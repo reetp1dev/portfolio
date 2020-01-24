@@ -11,13 +11,17 @@ import Link from "@material-ui/core/Link";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import Divider from "@material-ui/core/Divider";
+import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import Contact from "@material-ui/icons/PermContactCalendarRounded";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyle = makeStyles(theme => ({
   app: {
     backgroundImage: `url(${wallpaper})`,
     minHeight: "100vh",
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
@@ -44,13 +48,15 @@ const useStyle = makeStyles(theme => ({
 
   fab: {
     margin: 50,
-    padding: 10
+    padding: 10,
+    backgroundColor: "black"
   },
   linkbox: {
-    width: 200,
+    width: 175,
     display: "flex",
     position: "absolute",
     margin: 10,
+    marginRight: 30,
     padding: 10,
     top: 0,
     right: 0,
@@ -71,6 +77,19 @@ const useStyle = makeStyles(theme => ({
     justifyContent: "space-between",
     paddingTop: 25,
     width: 200
+  },
+
+  profiledetails: {
+    display: "flex",
+    justifyContent: "space-around",
+    flexDirection: "Column",
+    alignItems: "center",
+    position: "absolute",
+    margin: 30,
+    padding: 10,
+    bottom: 0,
+    right: 0,
+    height: 175
   }
 }));
 
@@ -81,9 +100,9 @@ function App() {
     <div className={classes.app}>
       {/* <Box className={classes.mainbox}> */}
       <div className={classes.fablist}>
-        <Fab color="primary" className={classes.fab}></Fab>
-        <Fab color="primary" className={classes.fab}></Fab>
-        <Fab color="primary" className={classes.fab}></Fab>
+        <Fab className={classes.fab}></Fab>
+        <Fab className={classes.fab}></Fab>
+        <Fab className={classes.fab}></Fab>
       </div>
       <div className={classes.titlebox}>
         <Typography
@@ -112,12 +131,38 @@ function App() {
       </div>
       {/* </Box> */}
       <div className={classes.linkbox}>
-        <Link href="/home">
-          <Typography variant="h6">Home</Typography>
-        </Link>
-        <Link href="/contact">
-          <Typography variant="h6">Contact</Typography>
-        </Link>
+        <IconButton color="inherit">
+          <HomeRoundedIcon style={{ fontSize: 50 }} />
+        </IconButton>
+        <IconButton color="inherit">
+          <Contact style={{ fontSize: 50 }} />
+        </IconButton>
+      </div>
+      <div className={classes.profiledetails}>
+        <Typography
+          variant="h3"
+          color="textSecondary"
+          style={{ fontFamily: "Gloria Hallelujah", fontWeight: "500px" }}
+        >
+          UI/UX Engineer
+        </Typography>
+        <Divider></Divider>
+
+        <Typography
+          variant="h3"
+          color="textSecondary"
+          style={{ fontFamily: "Gloria Hallelujah" }}
+        >
+          Developer
+        </Typography>
+        <Divider></Divider>
+        <Typography
+          variant="h3"
+          color="textSecondary"
+          style={{ fontFamily: "Gloria Hallelujah" }}
+        >
+          System Engineer
+        </Typography>
       </div>
     </div>
   );
