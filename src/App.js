@@ -16,9 +16,11 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import PhoneIcon from "@material-ui/icons/PhoneAndroidRounded";
 import MailIcon from "@material-ui/icons/MailOutlineRounded";
 import Drawer from "@material-ui/core/Drawer";
-
+import Project from "./components/projects";
 import SideList from "./components/listitems";
 import MenuIcon from "@material-ui/icons/Menu";
+import About from "./components/about";
+import Certi from "./components/certi";
 
 const useStyle = makeStyles(theme => ({
   app: {
@@ -100,8 +102,14 @@ const useStyle = makeStyles(theme => ({
   },
 
   list: {
-    width: 150,
+    width: 200,
     paddingTop: 120
+  },
+  projectbox: {
+    display: "flex",
+    padding: "8px",
+    flexDirection: "column",
+    justifyContent: "center"
   }
 }));
 
@@ -109,6 +117,9 @@ function App() {
   const classes = useStyle();
   const [open, setOpen] = React.useState(false);
   const [drawerState, setDrawerState] = React.useState(false);
+  const [openProject, setOpenProject] = React.useState(false);
+  const [openAbout, setOpenAbout] = React.useState(false);
+  const [openCerti, setOpenCerti] = React.useState(false);
 
   const toggleDrawer = value => {
     setDrawerState(!drawerState);
@@ -119,13 +130,28 @@ function App() {
   const handleClickOpen = value => {
     setOpen(true);
   };
+  const openProjectDialog = () => {
+    setOpenProject(!openProject);
+  };
+
+  const toggleAboutDialog = () => {
+    setOpenAbout(!openAbout);
+  };
+  const toggleCertiDialog = () => {
+    setOpenCerti(!openCerti);
+  };
 
   return (
     <div className={classes.app}>
       {/* <Box className={classes.mainbox}> */}
 
       <Drawer open={drawerState} onClose={toggleDrawer}>
-        <SideList sidelist={classes.list}></SideList>
+        <SideList
+          sidelist={classes.list}
+          projectDialog={openProjectDialog}
+          aboutDialog={toggleAboutDialog}
+          certiDialog={toggleCertiDialog}
+        ></SideList>
       </Drawer>
       <IconButton
         edge="start"
@@ -144,6 +170,15 @@ function App() {
       >
         <MenuIcon style={{ fontSize: 30 }} />
       </IconButton>
+      <Dialog open={openProject} onClose={openProjectDialog}>
+        <Project project={classes.projectbox}></Project>
+      </Dialog>
+      <Dialog open={openAbout} onClose={toggleAboutDialog}>
+        <About about={classes.projectbox}></About>
+      </Dialog>
+      <Dialog open={openCerti} onClose={toggleCertiDialog}>
+        <Certi about={classes.projectbox}></Certi>
+      </Dialog>
 
       <div className={classes.titlebox}>
         <Typography
@@ -181,7 +216,7 @@ function App() {
       </div>
       <Box className={classes.profiledetails}>
         <Typography
-          variant="h5"
+          variant="h4"
           // color="textSecondary"
           style={{ fontFamily: "Gloria Hallelujah", fontWeight: "500px" }}
         >
@@ -190,7 +225,7 @@ function App() {
         <Divider></Divider>
 
         <Typography
-          variant="h5"
+          variant="h4"
           // color="textSecondary"
           style={{ fontFamily: "Gloria Hallelujah" }}
         >
@@ -198,7 +233,7 @@ function App() {
         </Typography>
         <Divider></Divider>
         <Typography
-          variant="h5"
+          variant="h4"
           // color="textSecondary"
           style={{ fontFamily: "Gloria Hallelujah" }}
         >

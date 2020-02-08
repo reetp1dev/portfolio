@@ -6,11 +6,22 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import Divider from "@material-ui/core/Divider";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import NoteOutlinedIcon from "@material-ui/icons/NoteOutlined";
+import DescriptionOutlinedIcon from "@material-ui/icons/DescriptionOutlined";
 import List from "@material-ui/core/List";
 import resumePdf from "../_resumeReet_updated.pdf";
 import Typography from "@material-ui/core/Typography";
 
 export default function sideList(props) {
+  function handleProjectDialog() {
+    console.log("click");
+    props.projectDialog();
+  }
+  function handleAboutClick() {
+    props.aboutDialog();
+  }
+  function handleCertiClick() {
+    props.certiDialog();
+  }
   return (
     <List className={props.sidelist}>
       <div>
@@ -30,7 +41,7 @@ export default function sideList(props) {
           </Typography>
         </ListItem>
         <Divider />
-        <ListItem button>
+        <ListItem button onClick={handleProjectDialog}>
           <ListItemIcon>
             <DashboardIcon fontSize="large" />
           </ListItemIcon>
@@ -38,7 +49,14 @@ export default function sideList(props) {
           <ListItemText primary="Projects" />
         </ListItem>
         <Divider />
-        <ListItem button>
+        <ListItem button onClick={handleCertiClick}>
+          <ListItemIcon>
+            <DescriptionOutlinedIcon fontSize="large" />
+          </ListItemIcon>
+          <ListItemText primary="Certifications" />
+        </ListItem>
+        <Divider />
+        <ListItem button onClick={handleAboutClick}>
           <ListItemIcon>
             <InfoOutlinedIcon fontSize="large" />
           </ListItemIcon>
