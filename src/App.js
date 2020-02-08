@@ -1,12 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import wallpaper from "./wallpaper.png";
 import Typography from "@material-ui/core/Typography";
-import AppBar from "@material-ui/core/AppBar";
-import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import Fab from "@material-ui/core/Fab";
 import Link from "@material-ui/core/Link";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
@@ -20,12 +16,9 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import PhoneIcon from "@material-ui/icons/PhoneAndroidRounded";
 import MailIcon from "@material-ui/icons/MailOutlineRounded";
 import Drawer from "@material-ui/core/Drawer";
-import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import listitems from "./components/listitems";
-import MenuIcon from "@material-ui/icons/Menu";
 
-const drawerWidth = 240;
+import SideList from "./components/listitems";
+import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyle = makeStyles(theme => ({
   app: {
@@ -69,7 +62,7 @@ const useStyle = makeStyles(theme => ({
 
   titlelink: {
     display: "flex",
-    justifyContent: "space-around",
+
     flexDirection: "row",
     justifyContent: "space-between",
     paddingTop: 25,
@@ -116,6 +109,7 @@ function App() {
   const classes = useStyle();
   const [open, setOpen] = React.useState(false);
   const [drawerState, setDrawerState] = React.useState(false);
+
   const toggleDrawer = value => {
     setDrawerState(!drawerState);
   };
@@ -126,13 +120,12 @@ function App() {
     setOpen(true);
   };
 
-  const preventDefault = event => event.preventDefault();
   return (
     <div className={classes.app}>
       {/* <Box className={classes.mainbox}> */}
 
       <Drawer open={drawerState} onClose={toggleDrawer}>
-        <List className={classes.list}>{listitems}</List>
+        <SideList sidelist={classes.list}></SideList>
       </Drawer>
       <IconButton
         edge="start"
@@ -151,6 +144,7 @@ function App() {
       >
         <MenuIcon style={{ fontSize: 30 }} />
       </IconButton>
+
       <div className={classes.titlebox}>
         <Typography
           variant="h1"
